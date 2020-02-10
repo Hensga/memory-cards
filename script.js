@@ -62,6 +62,27 @@ function createCard(data, index) {
   cardsEl.push(card);
 
   cardsContainer.appendChild(card);
+
+  updateCurrentText();
+}
+
+// Show number of cards
+function updateCurrentText() {
+  currentEl.innerText = `${currentActiveCard++}/${cardsEl.length}`;
 }
 
 createCards();
+
+// Event listeners
+
+nextBtn.addEventListener('click', () => {
+  cardsEl[currentActiveCard].className = 'card left';
+
+  currentActiveCard = currentActiveCard + 1;
+
+  if (currentActiveCard > cardsEl.length - 1) {
+    currentActiveCard = cards.length - 1;
+  }
+
+  cardsEl[currentActiveCard].className = 'card active';
+});
